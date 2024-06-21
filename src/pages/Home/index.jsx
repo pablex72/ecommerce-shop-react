@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
-const Home = () => {
-  const [items, setItems] = useState(null);
+import ProductDetail from "../../Components/ProductDetail";
 
+
+const Home = () => {
+const [items,setItems] = useState(null)
   useEffect(() => {
     fetch("https://api.escuelajs.co/api/v1/products")
       .then((response) => response.json())
@@ -18,6 +20,7 @@ const Home = () => {
           <Card key={item.id} data={item} />
         ))}
       </div>
+      <ProductDetail />
     </Layout>
   );
 };

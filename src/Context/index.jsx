@@ -32,6 +32,9 @@ export const ShoppingCartProvider = ({ children }) => {
   // Shopping product - add products to cart = carrito donde almacenaremos todo
   const [cartProducts, setCartProducts] = useState([]);
 
+  //Shopping Cart - order
+  const [order, setOrder] = useState([])
+
 
   console.log("count  ", count);
   return (
@@ -48,8 +51,9 @@ export const ShoppingCartProvider = ({ children }) => {
         setCartProducts,
         isCheckoutSideMenuOpen,
         openCheckoutSideMenu,
-        closeCheckoutSideMenu
-        
+        closeCheckoutSideMenu,
+        order,
+        setOrder
       }}
     >
       {children}

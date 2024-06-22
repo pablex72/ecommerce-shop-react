@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import React from "react";
@@ -18,6 +19,17 @@ const CheckoutSideMenu = () => {
     );
     context.setCartProducts(filteredProducts);
   };
+
+  const handleChekout = () => {
+    const orderToAdd = {
+      date: "01.02.23",
+      products: context.cartProducts,
+      totalProducts: context.cartProducts.length,
+      totalPrice: totalPrice(context.cartProducts),
+    };
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
+  };
   return (
     <aside
       className={`${
@@ -33,7 +45,7 @@ const CheckoutSideMenu = () => {
           />
         </div>
       </div>
-      <div className="px-6 overflow-y-scroll">
+      <div className="px-6 overflow-y-scroll flex-1">
         {context.cartProducts.map((product) => (
           <OrderCart
             key={product.id}
@@ -45,11 +57,21 @@ const CheckoutSideMenu = () => {
           />
         ))}
       </div>
-      <div className="px-6 ">
-        <p className="flex justify-between items-center">
+      <div className="px-6 mb-6">
+        <p className="flex justify-between items-center mb-2">
           <span className="font-light">Total:</span>
-          <span className="font-medium text-2xl">${totalPrice(context.cartProducts)}</span>
+          <span className="font-medium text-2xl">
+            ${totalPrice(context.cartProducts)}
+          </span>
         </p>
+        <Link to='/my-orders/last'>
+          <button
+            className="bg-black py-3 text-white w-full rounded-full"
+            onClick={() => handleChekout()}
+          >
+            Checkout
+          </button>
+        </Link>
       </div>
     </aside>
   );

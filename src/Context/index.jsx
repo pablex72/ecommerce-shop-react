@@ -16,10 +16,21 @@ export const ShoppingCartProvider = ({ children }) => {
   const closeProductDetail = () => {
     setIsProductDetailOpen(false);
   };
+  // CHeckout side menu - Open/Close
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+
+  const openCheckoutSideMenu = () => {
+    setIsCheckoutSideMenuOpen(true);
+  };
+  const closeCheckoutSideMenu = () => {
+    setIsCheckoutSideMenuOpen(false);
+  };
 
 
   // product detail * show product
   const [productToShow, setProductToShow] = useState({});
+  // Shopping product - add products to cart = carrito donde almacenaremos todo
+  const [cartProducts, setCartProducts] = useState([]);
 
 
   console.log("count  ", count);
@@ -32,7 +43,13 @@ export const ShoppingCartProvider = ({ children }) => {
         closeProductDetail,
         isProductDetailOpen,
         productToShow,
-        setProductToShow
+        setProductToShow,
+        cartProducts,
+        setCartProducts,
+        isCheckoutSideMenuOpen,
+        openCheckoutSideMenu,
+        closeCheckoutSideMenu
+        
       }}
     >
       {children}
